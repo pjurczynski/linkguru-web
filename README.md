@@ -1,5 +1,7 @@
 ## linkguru-web
 
+Client-Web interface for linkguru
+
 App init generated with [generator-react-reflux](https://github.com/tfaga/generator-react-reflux)
 
 We are using:

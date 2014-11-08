@@ -16,7 +16,7 @@ You will need the following things properly installed on your computer.
 * [Node.js](http://nodejs.org/) v0.10.31 or later (with NPM) and [Bower](http://bower.io/)
 * [Gulp.js](http://gulpjs.com/)
 
-### Install Node
+#### Install Node
 
 If you don't use brew, node can also be installed via a package [here](http://nodejs.org/download/).
 
@@ -24,8 +24,7 @@ Install via brew:
 
 * brew install node
 
-###
- Install Bower
+#### Install Bower
 
 * npm install -g bower
 

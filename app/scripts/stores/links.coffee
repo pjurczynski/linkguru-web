@@ -6,5 +6,9 @@ module.exports = Reflux.createStore
 
   state:
     list: []
+  onAdd: (payload) ->
+    @state.list.push(url: payload.url)
+    @trigger(@state)
+
   getState: ->
     @state

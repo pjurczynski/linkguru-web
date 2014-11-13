@@ -1,5 +1,7 @@
 Reflux = require 'reflux'
 
-stores = {}
+
+stores =
+  links: require('./stores/links')
 
 module.exports = stores

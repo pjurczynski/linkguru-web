@@ -18,18 +18,11 @@ gulp.task 'scripts', ->
   bundler = browserify './app/scripts/app.coffee',
     extensions: ['.cjsx', '.coffee']
     debug: env == 'dev'
-  .transform 'coffee-reactify' 
+  .transform 'coffee-reactify'
 
   bundler.bundle()
     .pipe source('app.js')
     .pipe gulp.dest('.tmp/scripts')
-
-gulp.task 'compass', ->
-  gulp.src 'app/styles/**/*.scss'
-    .pipe $.plumber()
-    .pipe $.compass
-      css: '.tmp/styles'
-      sass: 'app/styles'
 
 gulp.task 'imagemin', ->
   gulp.src 'app/images/*'
@@ -38,8 +31,15 @@ gulp.task 'imagemin', ->
             svgoPlugins: [ removeViewBox: false ]
     .pipe gulp.dest('dist/images')
 
+gulp.task 'compass', ->
+  gulp.src 'app/styles/**/*.scss'
+    .pipe $.plumber()
+    .pipe $.compass
+      css: '.tmp/styles'
+      sass: 'app/styles'
+
 gulp.task 'copy', ->
-  gulp.src ['app/*.txt', 'app/*.ico']
+  gulp.src ['app/*.txt', 'app/*.ico', 'app/**/*.{ttf,woff,eof,svg}']
     .pipe gulp.dest('dist')
 
 gulp.task 'bundle', ->
@@ -73,6 +73,7 @@ gulp.task 'webserver', ->
     .pipe $.webserver
       livereload: true
       open: true
+      host: '0.0.0.0'
 
 gulp.task 'serve', ->
   runSequence 'clean:dev', ['scripts', 'compass'], 'webserver'
@@ -82,7 +83,7 @@ gulp.task 'serve', ->
   gulp.watch 'app/scripts/**/*.coffee', ['scripts']
 
   gulp.watch 'app/scripts/**/*.cjsx', ['scripts']
-  
+
   gulp.watch 'app/styles/**/*.scss', ['compass']
 
 gulp.task 'build', ->

@@ -1,6 +1,6 @@
 Reflux = require 'reflux'
 
-module.exports = Reflux.createStore
+linksStore = Reflux.createStore
   init: ->
     @listenToMany Window.Actions.links
 
@@ -26,3 +26,5 @@ module.exports = Reflux.createStore
 
   getState: ->
     @state
+
+module.exports = linksStore

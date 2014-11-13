@@ -1,5 +1,12 @@
 Reflux = require 'reflux'
 
-actions = {}
+actions =
+  links: Reflux.createActions([
+          "add",
+          "remove",
+          "upVote",
+          "downVote",
+          "update"
+        ])
 
 module.exports = actions

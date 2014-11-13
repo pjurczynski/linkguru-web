@@ -10,5 +10,12 @@ module.exports = Reflux.createStore
     @state.list.push(url: payload.url)
     @trigger(@state)
 
+  onUpVote: (link) ->
+    return true if link.upVoted
+    link.score += if link.downVoted then 2 else 1
+    link.upVoted = true
+    link.downVoted = false
+    @trigger(@state)
+
   getState: ->
     @state

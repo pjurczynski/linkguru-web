@@ -9,5 +9,8 @@ actions =
           "update",
           "fetch"
         ])
+  tags: Reflux.createActions([
+          "select",
+        ])
 
 module.exports = actions

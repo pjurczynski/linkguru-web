@@ -1,4 +1,5 @@
 React = require 'react'
+Link = require('react-router').Link
 
 Navbar = React.createClass
   render: ->
@@ -8,6 +9,11 @@ Navbar = React.createClass
           <a className='navbar-brand' href='#'>LinkGuru</a>
         </div>
         <div className='collapse navbar-collapse'>
+          <ul className='nav navbar-nav'>
+            <li>
+              <Link to="tags">tags</Link>
+            </li>
+          </ul>
           <ul className='nav navbar-nav navbar-right'>
             <li><a href='#'>TODO: User data</a></li>
           </ul>

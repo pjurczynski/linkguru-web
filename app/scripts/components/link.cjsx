@@ -2,6 +2,7 @@ React = require 'react/addons'
 Gravatar = require 'react-gravatar'
 DateTime = require 'react-time'
 cx = React.addons.classSet
+RouterLink = require('react-router').Link
 
 actions = Window.Actions.links
 
@@ -40,7 +41,9 @@ Link = React.createClass
         <div className='col-sm-3 tags'>
           {
             @props.link.tags.map (tag) ->
-              <button className='btn btn-default btn-xs pull-right'> {tag} </button>
+              <button className='btn btn-default btn-xs pull-right'>
+                 <RouterLink to="tag" params={name: tag}>{tag}</RouterLink>
+              </button>
           }
         </div>
         <div className='visible-sm-inline visible-md-inline visible-lg-inline user'>

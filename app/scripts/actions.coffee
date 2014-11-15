@@ -6,7 +6,8 @@ actions =
           "remove",
           "upVote",
           "downVote",
-          "update"
+          "update",
+          "fetch"
         ])
 
 module.exports = actions

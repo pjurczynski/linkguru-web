@@ -6,3 +6,4 @@ React = require 'react'
 Router = require './router'
 
 Router.start()
+Window.Actions.links.fetch()

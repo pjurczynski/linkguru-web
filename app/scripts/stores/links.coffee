@@ -4,27 +4,28 @@ linksStore = Reflux.createStore
   init: ->
     @listenToMany Window.Actions.links
 
-  state:
-    list: []
+    @list = []
+
   onAdd: (payload) ->
-    @state.list.push(url: payload.url)
-    @trigger(@state)
+    @list.push(payload)
+    @trigger @getState()
 
   onUpVote: (link) ->
     return true if link.upVoted
     link.score += if link.downVoted then 2 else 1
     link.upVoted = true
     link.downVoted = false
-    @trigger(@state)
+    @trigger @getState()
 
   onDownVote: (link) ->
     return true if link.downVoted
     link.score -= if link.upVoted then 2 else 1
     link.downVoted = true
     link.upVoted = false
-    @trigger(@state)
+    @trigger @getState()
 
-  getState: ->
-    @state
+  getState: (payload) ->
+    list: @list
+
 
 module.exports = linksStore

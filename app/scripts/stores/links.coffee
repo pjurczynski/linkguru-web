@@ -1,4 +1,5 @@
 Reflux = require 'reflux'
+faker = require 'faker'
 
 linksStore = Reflux.createStore
   init: ->
@@ -26,6 +27,27 @@ linksStore = Reflux.createStore
 
   getState: (payload) ->
     list: @list
+
+  fakeData: ->
+    @list = [1..50].map (i) ->
+      tags = [1..faker.helpers.randomNumber(5)].map ->
+        faker.hacker.noun()
+      {
+        id: i
+        score: faker.helpers.randomNumber(200)
+        tags: tags
+        downVoted: faker.helpers.randomNumber(1) == 1
+        upVoted: faker.helpers.randomNumber(1) == 1
+        description: faker.lorem.sentences()
+        owner:
+          email: faker.internet.email()
+      }
+
+  onFetch: ->
+    setTimeout( =>
+      @fakeData()
+      @trigger @getState()
+    , 500)
 
 
 module.exports = linksStore

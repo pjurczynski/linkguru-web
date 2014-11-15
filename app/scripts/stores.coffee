@@ -1,7 +1,9 @@
 Reflux = require 'reflux'
 
+linksStore = require('./stores/links')
 
 stores =
-  links: require('./stores/links')
+  links: linksStore
+  tags: require('./stores/tags').agregate(linksStore)
 
 module.exports = stores

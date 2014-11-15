@@ -1,0 +1,30 @@
+.tags-component{
+  .navigation{
+    overflow-y: 'auto';
+    min-width: 100px;
+    border-right: solid 1px rgba(52, 62, 78, 0.15);
+
+    .tag-nav{
+      a{
+        padding: 5px;
+      }
+      &:hover{
+        a{
+          background-color: rgba(255, 155, 0, 0.21);
+        }
+      }
+      &.active {
+        a{
+          background-color: rgb(52, 62, 78);
+          &:hover{
+            background-color: rgb(52, 62, 78);
+          }
+        }
+      }
+    }
+  }
+  .tag-links{
+    padding-left: 30px;
+    overflow-y: 'auto';
+  }
+}

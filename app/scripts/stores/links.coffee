@@ -8,7 +8,7 @@ linksStore = Reflux.createStore
     @list = []
 
   onAdd: (payload) ->
-    @list.push(payload)
+    @list.unshift(payload)
     @trigger @getState()
 
   onUpVote: (link) ->

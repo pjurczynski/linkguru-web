@@ -9,15 +9,15 @@ Links = React.createClass
   mixins: [Reflux.listenTo(linksStore, "onlinksStateChange")]
 
   getInitialState: ->
-    links: linksStore.getState()
+    linksStore.getState()
 
   onlinksStateChange: (state) ->
-    @setState(links: state)
+    @setState(state)
 
   render: ->
     <div className='links-component'>
       {
-        @state.links.list.map (link, i) =>
+        @state.list.map (link, i) =>
           <LinkComponent key=i link={link}/>
       }
     </div>

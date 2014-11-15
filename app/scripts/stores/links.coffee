@@ -34,6 +34,7 @@ linksStore = Reflux.createStore
         faker.hacker.noun()
       {
         id: i
+        url: "http:google.pl/search?q=#{faker.lorem.words(1)[0]}"
         score: faker.helpers.randomNumber(200)
         tags: tags
         downVoted: faker.helpers.randomNumber(1) == 1

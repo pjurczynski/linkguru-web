@@ -24,11 +24,11 @@ If you don't use brew, node can also be installed via a package [here](http://no
 
 Install via brew:
 
-* brew install node
+* `brew install node`
 
 #### Install Bower
 
-* npm install -g bower
+* `npm install -g bower`
 
 ## Project Setup
 

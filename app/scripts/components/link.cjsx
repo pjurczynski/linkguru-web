@@ -20,9 +20,15 @@ Link = React.createClass
     )
     <div className={"row link-component #{classes}"} >
       <div className='score'>
-        <div className='row glyphicon glyphicon-chevron-up up-vote' onClick={@onUpVote}></div>
-        <div className='row value'>{@props.link.score}</div>
-        <div className='row glyphicon glyphicon-chevron-down down-vote' onClick={@onDownVote}></div>
+        <div className='row'>
+          <div className='btn bt-link glyphicon glyphicon-chevron-up up-vote' onClick={@onUpVote}></div>
+        </div>
+        <div className='row value'>
+          {@props.link.score}
+        </div>
+        <div className='row'>
+          <div className='btn bt-link glyphicon glyphicon-chevron-down down-vote' onClick={@onDownVote}></div>
+        </div>
       </div>
       <div className='offset-left-35 offset-right-50'>
         <div className='col-xs-9 link-data'>
@@ -41,16 +47,16 @@ Link = React.createClass
         <div className='col-sm-3 tags'>
           {
             @props.link.tags.map (tag) ->
-              <button className='btn btn-default btn-xs pull-right'>
-                 <RouterLink to="tag" params={name: tag}>{tag}</RouterLink>
-              </button>
+              <RouterLink to="tag" params={name: tag}>
+                <button className='btn btn-default btn-xs pull-right'>{tag}</button>
+              </RouterLink>
           }
         </div>
-        <div className='visible-sm-inline visible-md-inline visible-lg-inline user'>
-          <div className='pull-right'>
-            <div className='row'>
-              <Gravatar email={@props.link.owner.email} />
-            </div>
+      </div>
+      <div className='visible-sm-inline visible-md-inline visible-lg-inline user'>
+        <div className='pull-right'>
+          <div className='row'>
+            <Gravatar email={@props.link.owner.email} />
           </div>
         </div>
       </div>

@@ -24,19 +24,19 @@ gulp.task 'scripts', ->
     .pipe source('app.js')
     .pipe gulp.dest('.tmp/scripts')
 
-gulp.task 'imagemin', ->
-  gulp.src 'app/images/*'
-    .pipe $.imagemin
-            progressive: true
-            svgoPlugins: [ removeViewBox: false ]
-    .pipe gulp.dest('dist/images')
-
 gulp.task 'compass', ->
   gulp.src 'app/styles/**/*.scss'
     .pipe $.plumber()
     .pipe $.compass
       css: '.tmp/styles'
       sass: 'app/styles'
+
+gulp.task 'imagemin', ->
+  gulp.src 'app/images/*'
+    .pipe $.imagemin
+            progressive: true
+            svgoPlugins: [ removeViewBox: false ]
+    .pipe gulp.dest('dist/images')
 
 gulp.task 'copy', ->
   gulp.src ['app/*.txt', 'app/*.ico', 'app/**/*.{ttf,woff,eof,svg}']
@@ -71,9 +71,9 @@ gulp.task 'bundle', ->
 gulp.task 'webserver', ->
   gulp.src ['.tmp', 'app']
     .pipe $.webserver
+      host: '0.0.0.0', #change to 'localhost' to disable outside connections
       livereload: true
       open: true
-      host: '0.0.0.0'
 
 gulp.task 'serve', ->
   runSequence 'clean:dev', ['scripts', 'compass'], 'webserver'

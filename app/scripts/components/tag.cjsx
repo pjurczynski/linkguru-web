@@ -4,10 +4,12 @@ Reflux = require 'reflux'
 cx = React.addons.classSet
 actions = Window.Actions.tags
 tagsStore = Window.Stores.tags
-LinkComponent = require './link'
+LinksList = require './links_list'
+Router = require 'react-router'
+Link = Router.Link
 
 Tag = React.createClass
-  mixins: [Reflux.listenTo(tagsStore, "onlinksStateChange")]
+  mixins: [Reflux.listenTo(tagsStore, "onTagsStateChange")]
 
   componentWillReceiveProps: (props) ->
     if @props.params.name != props.params.name
@@ -22,19 +24,25 @@ Tag = React.createClass
   getInitialState: ->
     tag: tagsStore.getState().selected
 
-  onlinksStateChange: (state) ->
+  onTagsStateChange: (state) ->
     @setState(tag: state.selected)
 
-  render: ->
-    <div className='row'>
-      {
-        if @state.tag
-          @state.tag.links?.map (link, i) ->
-            <LinkComponent key=i link={link}/>
-        else
-          <div className='alert alert-warning'>tag not found... make sure you url is valid!</div>
-      }
-    </div>
+  currentLinksPage: ->
+    parseInt(@props.query?['links-page']) || 1
 
+  render: ->
+    (
+      <div className='row'>
+        {
+          if @state.tag
+            <div>
+              <LinksList links={@state.tag.links} currentPage={@currentLinksPage()} route='tag'/>
+            </div>
+          else
+            <div className='alert alert-warning'>tag not found... make sure you url is valid!</div>
+        }
+      </div>
+
+    )
 
 module.exports = Tag

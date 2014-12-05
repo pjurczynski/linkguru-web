@@ -32,16 +32,3 @@ Navbar = React.createClass
     </nav>
 
 module.exports = Navbar
-
-# --- react-bootstrap ---
-## this need to wait, till they will fix react 0.12.0 compatibility
-    # BS = require 'react-bootstrap'
-    # Navbar = BS.Navbar
-    # Nav = BS.Nav
-    # NavItem = BS.NavItem
-    # [..]
-    # <Navbar brand="LinkGuru" fixedTop=true>
-    #   <Nav pullRight=true>
-    #     <NavItem key={1} href="#">Login</NavItem>
-    #   </Nav>
-    # </Navbar>

@@ -23,6 +23,8 @@ NewLink = React.createClass
       owner:
         email: 'me@me.com'
 
+    @setState(@getInitialState())
+
     actions.add(link)
 
   render: ->
@@ -43,7 +45,7 @@ NewLink = React.createClass
             <textarea type='textarea' rows=2 className='form-control' placeholder='comma separated tags' valueLink={this.linkState('tags')} />
           </div>
         </div>
-        <button type='submit' className='btn btn-primary' >share!</button>
+        <button type='submit' className='btn btn-primary'>share!</button>
       </form>
     </div>
 

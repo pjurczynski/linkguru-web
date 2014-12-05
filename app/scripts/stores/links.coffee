@@ -18,6 +18,7 @@ linksStore = Reflux.createStore
 
 
   onAdd: (payload) ->
+    @lunr.add(payload)
     @list.unshift(payload)
     @trigger @getState()
 
@@ -50,7 +51,7 @@ linksStore = Reflux.createStore
     payload: payload
 
   fakeData: ->
-    @list = [1..50].map (i) ->
+    links = [1..1000].map (i) =>
       tags = [1..faker.helpers.randomNumber(5)].map ->
         faker.hacker.noun()
       link = {

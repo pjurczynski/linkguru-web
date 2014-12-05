@@ -23,7 +23,6 @@ Paginator = React.createClass
     _.toArray result
 
   pagesRange: ->
-    console.log  @props.numberOfPages
     if @props.numberOfPages <= 1 then return []
     range = [1..@props.numberOfPages]
 

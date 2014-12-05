@@ -12,6 +12,7 @@ tagsStore = (linksStore) -> Reflux.createStore
     selected: ""
 
   handleLinksChange: (state) ->
+    tags: {}
     @state.tags = {}
     _(state.list).each (link) =>
       _(link.tags).each (tagName) =>

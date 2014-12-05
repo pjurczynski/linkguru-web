@@ -2,6 +2,7 @@ React = require 'react'
 
 NavbarComponent = require './navbar'
 
+
 Layout = React.createClass
   render: ->
     <div className='App'>

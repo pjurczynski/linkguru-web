@@ -1,8 +1,8 @@
 React = require 'react/addons'
-
 cx = React.addons.classSet
 
 actions = Window.Actions.links
+
 
 NewLink = React.createClass
   mixins: [React.addons.LinkedStateMixin]
@@ -46,6 +46,5 @@ NewLink = React.createClass
         <button type='submit' className='btn btn-primary' >share!</button>
       </form>
     </div>
-
 
 module.exports = NewLink

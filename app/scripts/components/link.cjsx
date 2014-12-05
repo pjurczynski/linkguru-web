@@ -6,6 +6,7 @@ RouterLink = require('react-router').Link
 
 actions = Window.Actions.links
 
+
 Link = React.createClass
   onDownVote: ->
     actions.downVote(@props.link)

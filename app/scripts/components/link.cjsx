@@ -22,13 +22,13 @@ Link = React.createClass
     <div className={"row link-component #{classes}"} >
       <div className='score'>
         <div className='row'>
-          <div className='btn bt-link glyphicon glyphicon-chevron-up up-vote' onClick={@onUpVote}></div>
+          <div className='btn bt-link up-vote' onClick={@onUpVote}>&#9650;</div>
         </div>
         <div className='row value'>
           {@props.link.score}
         </div>
         <div className='row'>
-          <div className='btn bt-link glyphicon glyphicon-chevron-down down-vote' onClick={@onDownVote}></div>
+          <div className='btn bt-link down-vote' onClick={@onDownVote}>&#9660;</div>
         </div>
       </div>
       <div className='offset-left-35 offset-right-50'>

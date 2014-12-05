@@ -3,7 +3,8 @@ React = require 'react'
 Reflux = require 'reflux'
 linksStore = Window.Stores.links
 
-LinkComponent = require './link'
+LinksList = require './links_list'
+
 
 Links = React.createClass
   mixins: [Reflux.listenTo(linksStore, "onlinksStateChange")]
@@ -15,11 +16,7 @@ Links = React.createClass
     @setState(state)
 
   render: ->
-    <div className='links-component'>
-      {
-        @state.list.map (link, i) =>
-          <LinkComponent key=i link={link}/>
-      }
-    </div>
+    <LinksList links={@state.list} currentPage={@props.currentPage} route='layout'/>
+
 
 module.exports = Links

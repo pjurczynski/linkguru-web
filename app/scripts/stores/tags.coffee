@@ -1,6 +1,7 @@
 Reflux = require 'reflux'
 _ = require 'underscore'
 
+
 tagsStore = (linksStore) -> Reflux.createStore
   init: ->
     @listenTo linksStore, @handleLinksChange
@@ -11,12 +12,14 @@ tagsStore = (linksStore) -> Reflux.createStore
     selected: ""
 
   handleLinksChange: (state) ->
+    @state.tags = {}
     _(state.list).each (link) =>
       _(link.tags).each (tagName) =>
         tag = @state.tags[tagName] ||= { name: tagName, selected: false }
-        array = tag.links ||= []
-        array.push(link)
-        @state.tags[tagName].links = _.uniq(array)
+        tag.link_ids ||= []
+        tag.link_ids.push(link.id)
+        @state.tags[tagName] = tag
+        # @state.tags[tagName].linkIds
 
     @state.loading = state.loading
     @trigger(@getState())
@@ -33,6 +36,9 @@ tagsStore = (linksStore) -> Reflux.createStore
   getSelected: ->
     _(@state.tags).each (tag) =>
       tag.selected = (tag.name == @state.selected)
-    @state.tags[@state.selected]
+    selected = @state.tags[@state.selected]
+    if selected?
+      selected.links = _.uniq(selected.link_ids).map (id) -> linksStore.all()[id]
+    selected
 
 exports.agregate = (linksStore) -> tagsStore(linksStore)

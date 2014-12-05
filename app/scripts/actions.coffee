@@ -7,6 +7,7 @@ actions =
           "upVote",
           "downVote",
           "update",
+          "search",
           "fetch"
         ])
   tags: Reflux.createActions([

@@ -14,17 +14,16 @@ LinksComponent = require './components/links'
 
 
 routes = (
-  <Routes>
-    <Route name="layout" path="/" handler={Layout}>
-      <DefaultRoute handler={Home}/>
-      <Route name='links' handler={LinksComponent}/>
-      <Route name='tags' handler={TagsComponent}>
-        <Route name='tag' path=":name" handler={Tag}/>
-      </Route>
-      <NotFoundRoute handler={MissingRouteComponent}/>
+  <Route name="layout" path="/" handler={Layout}>
+    <DefaultRoute handler={Home}/>
+    <Route name='links' handler={LinksComponent}/>
+    <Route name='tags' handler={TagsComponent}>
+      <Route name='tag' path=":name" handler={Tag}/>
     </Route>
-  </Routes>
+    <NotFoundRoute handler={MissingRouteComponent}/>
+  </Route>
 )
 
 exports.start = ->
-  React.renderComponent routes, document.getElementById('content')
+  Router.run routes, (Handler) ->
+    React.render(<Handler/>, document.getElementById('content'))

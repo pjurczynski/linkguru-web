@@ -1,4 +1,5 @@
 ## linkguru-web
+[![Build Status][travis-image]][travis-url]
 
 Client-Web interface for linkguru
 

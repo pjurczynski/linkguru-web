@@ -9,7 +9,7 @@ Arrow = require './arrow'
 Page = require './link'
 
 Paginator = React.createClass
-  mixins: [Router.Navigation, Router.CurrentPath, Router.ActiveState]
+  mixins: [Router.Navigation, Router.State]
 
   getDefaultProps: ->
     visiblePages: 5
@@ -43,14 +43,14 @@ Paginator = React.createClass
     @linkData(next)
 
   query: (id) ->
-    query = Object.create(@getActiveQuery())
+    query = Object.create(@getQuery())
     query[@props.attribute] = id
     query
 
   linkData: (id) ->
     {
       route: @props.route
-      params: @getActiveParams()
+      params: @getParams()
       query: @query(id)
       value: id
     }

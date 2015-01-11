@@ -5,7 +5,6 @@ Link = Router.Link
 
 
 Arrow = React.createClass
-  mixins: [Router.ActiveState]
 
   getDefaultProps: ->
     disabled: false

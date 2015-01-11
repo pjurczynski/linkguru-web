@@ -1,8 +1,6 @@
 React = require 'react/addons'
 Router = require('react-router')
 Link = Router.Link
-
-actions = Window.Actions.tags
 cx = React.addons.classSet
 
 

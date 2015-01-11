@@ -5,7 +5,6 @@ Link = Router.Link
 
 
 PaginationLink = React.createClass
-  mixins: [Router.ActiveState]
 
   getDefaultProps: ->
     active: false

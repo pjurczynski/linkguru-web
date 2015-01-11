@@ -9,14 +9,13 @@ Router = require 'react-router'
 Link = Router.Link
 
 Tag = React.createClass
-  mixins: [Reflux.listenTo(tagsStore, "onTagsStateChange")]
-
   componentWillReceiveProps: (props) ->
     if @props.params.name != props.params.name
       actions.select(props.params.name)
+  mixins: [Reflux.listenTo(tagsStore, "onTagsStateChange"), Router.State]
 
   componentWillMount: ->
-    actions.select(@props.params.name)
+    actions.select(@getParams().name)
 
   componentWillUnmount: ->
     actions.select("")
@@ -28,7 +27,7 @@ Tag = React.createClass
     @setState(tag: state.selected)
 
   currentLinksPage: ->
-    parseInt(@props.query?['links-page']) || 1
+    parseInt(@getQuery()?['links-page']) || 1
 
   render: ->
     (

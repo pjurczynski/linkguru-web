@@ -2,6 +2,8 @@ React = require 'react/addons'
 Reflux = require 'reflux'
 _ = require 'underscore'
 cx = React.addons.classSet
+Router = require('react-router')
+RouteHandler = Router.RouteHandler
 
 TagNav = require './tag_nav'
 tagsStore = Window.Stores.tags
@@ -41,7 +43,7 @@ Tags = React.createClass
         </ul>
       </div>
       <div className='col-xs-9 tag-links' style={height: @state.height, 'overflow-y': 'auto', 'overflow-x': 'hidden'}>
-        <@props.activeRouteHandler/>
+        <RouteHandler />
       </div>
     </div>
 

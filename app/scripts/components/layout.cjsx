@@ -1,4 +1,5 @@
 React = require 'react'
+RouteHandler = require('react-router').RouteHandler
 
 NavbarComponent = require './navbar'
 
@@ -10,7 +11,7 @@ Layout = React.createClass
         <NavbarComponent/>
       </div>
       <div className='container page-container'>
-        <this.props.activeRouteHandler/>
+        <RouteHandler />
       </div>
     </div>
 

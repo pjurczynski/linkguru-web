@@ -15,7 +15,7 @@ deploy:
   api_key:
     secure: Wo8Su0ea4hmKY1SAhkCYIewFIEeLsHMieBzgLDKrQMTDgaFDuQAVyybv21iItXnEI0I7G2mD7DUkTtooNv51yDbIunTWPcqoLH/0wplPaptHH7xm5TwA0mgE0U0BGoDJCppSIR85dqIZ6RKwGmR0tbcJIbkRgjx2wLJ75BM4feY=
   environment:
-    master: development
+    divshot-integration: development
   skip_cleanup: true
 
 

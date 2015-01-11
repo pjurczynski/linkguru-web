@@ -1,5 +1,5 @@
 ## linkguru-web
-[![Build Status][travis-image]][travis-url]
+[![Build Status](https://travis-ci.org/mxaly/linkguru-web.svg?branch=master)](https://travis-ci.org/mxaly/linkguru-web)
 
 Client-Web interface for linkguru
 

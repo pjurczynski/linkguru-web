@@ -1,7 +1,7 @@
 deploy:
   provider: divshot
+  api_key:
+    secure: Wo8Su0ea4hmKY1SAhkCYIewFIEeLsHMieBzgLDKrQMTDgaFDuQAVyybv21iItXnEI0I7G2mD7DUkTtooNv51yDbIunTWPcqoLH/0wplPaptHH7xm5TwA0mgE0U0BGoDJCppSIR85dqIZ6RKwGmR0tbcJIbkRgjx2wLJ75BM4feY=
   environment:
     master: development
-  skip_cleanup: true
-  api_key:
-    secure: MbdCF4H+r6H4tK3lS9OAGvZlAU9ahcMksJ5LvvFaGWadpk8LvYRD4aGqEhNqXJHpVxgwef2bKbrrHqSNNFv81iFbKkd7NHB2/nH9otxllAK3QP5emgnYQ/z7cHPox1EZz0ga5mBY3pU8CZZ4oX25R1pXYrKzQ9P8G7c/6NPDF1g=
+

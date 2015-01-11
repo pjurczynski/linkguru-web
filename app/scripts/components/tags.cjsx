@@ -8,9 +8,11 @@ RouteHandler = Router.RouteHandler
 TagNav = require './tag_nav'
 tagsStore = Window.Stores.tags
 
+actions = Window.Actions.tags
+
 
 Tags = React.createClass
-  mixins: [Reflux.listenTo(tagsStore, "onlinksStateChange")]
+  mixins: [Reflux.listenTo(tagsStore, "onlinksStateChange"), Router.State]
 
   getInitialState: ->
     tags: tagsStore.state.tags
@@ -24,6 +26,10 @@ Tags = React.createClass
 
   componentWillUnmount: ->
     window.removeEventListener('resize', @handleResize)
+
+
+  componentWillReceiveProps: ->
+    actions.select(@getParams().name)
 
   handleResize: ->
     @setState(height: window.innerHeight - 50)

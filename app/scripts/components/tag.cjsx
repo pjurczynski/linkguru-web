@@ -9,9 +9,6 @@ Router = require 'react-router'
 Link = Router.Link
 
 Tag = React.createClass
-  componentWillReceiveProps: (props) ->
-    if @props.params.name != props.params.name
-      actions.select(props.params.name)
   mixins: [Reflux.listenTo(tagsStore, "onTagsStateChange"), Router.State]
 
   componentWillMount: ->

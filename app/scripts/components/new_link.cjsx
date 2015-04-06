@@ -3,9 +3,9 @@ cx = React.addons.classSet
 
 actions = Window.Actions.links
 
-
+Authentication = require './../mixins/authentication'
 NewLink = React.createClass
-  mixins: [React.addons.LinkedStateMixin]
+  mixins: [React.addons.LinkedStateMixin, Authentication]
 
   getInitialState: ->
     url: ""

@@ -47,10 +47,8 @@ Link = React.createClass
         </div>
         <div className='col-sm-3 tags'>
           {
-            @props.link.tags.map (tag) ->
-              <RouterLink to="tag" params={name: tag}>
-                <button className='btn btn-default btn-xs pull-right'>{tag}</button>
-              </RouterLink>
+            @props.link.tag_list.map (tag) ->
+              <button className='btn btn-default btn-xs pull-right'>{tag}</button>
           }
         </div>
       </div>

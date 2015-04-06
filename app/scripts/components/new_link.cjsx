@@ -10,13 +10,14 @@ NewLink = React.createClass
   getInitialState: ->
     url: ""
     description: ""
-    tags: ""
+    tagList: ""
 
-  onLinkAdd: ->
+  onLinkAdd: (e)->
+    e.preventDefault()
     link =
       url: @state.url
       description: @state.description
-      tags: @state.tags.split(/\s*,\s*/)
+      tag_list: @state.tagList.split(/\s*,\s*/)
       upVoted: true
       downVoted: true
       score: 0
@@ -42,7 +43,7 @@ NewLink = React.createClass
             </textarea>
           </div>
           <div className='col-xs-4'>
-            <textarea type='textarea' rows=2 className='form-control' placeholder='comma separated tags' valueLink={this.linkState('tags')} />
+            <textarea type='textarea' rows=2 className='form-control' placeholder='comma separated tags' valueLink={this.linkState('tagList')} />
           </div>
         </div>
         <button type='submit' className='btn btn-primary'>share!</button>

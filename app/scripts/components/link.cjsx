@@ -19,7 +19,7 @@ Link = React.createClass
       'up-voted': @props.link.upVoted
       'down-voted': @props.link.downVoted
     )
-    <div className={"row link-component #{classes}"} >
+    <div className={"row link-component #{classes}"}>
       <div className='score'>
         <div className='row'>
           <div className='btn bt-link up-vote' onClick={@onUpVote}>&#9650;</div>

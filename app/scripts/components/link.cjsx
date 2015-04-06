@@ -57,7 +57,7 @@ Link = React.createClass
       <div className='visible-sm-inline visible-md-inline visible-lg-inline user'>
         <div className='pull-right'>
           <div className='row'>
-            <Gravatar email={@props.link.owner.email} />
+            <Gravatar email={@props.link.user.email} />
           </div>
         </div>
       </div>

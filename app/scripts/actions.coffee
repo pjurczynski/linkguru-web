@@ -2,16 +2,21 @@ Reflux = require 'reflux'
 
 actions =
   links: Reflux.createActions([
-          "add",
-          "remove",
-          "upVote",
-          "downVote",
-          "update",
-          "search",
-          "fetch"
-        ])
+    'add',
+    'remove',
+    'upVote',
+    'downVote',
+    'update',
+    'search',
+    'fetch'
+  ])
   tags: Reflux.createActions([
-          "select",
-        ])
+    'select',
+  ])
+
+  session: Reflux.createActions([
+    'login',
+    'logout'
+  ])
 
 module.exports = actions

@@ -9,7 +9,7 @@ tagsStore = (linksStore) -> Reflux.createStore
 
   state:
     tags: {}
-    selected: ""
+    selected: ''
 
   handleLinksChange: (state) ->
     tags: {}

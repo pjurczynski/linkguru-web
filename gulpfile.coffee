@@ -73,7 +73,13 @@ gulp.task 'webserver', ->
     .pipe $.webserver
       livereload: true
       open: true
-      host: '0.0.0.0'
+      host: 'localhost'
+      proxies: [
+        {
+          source: '/api',
+          target: 'http://localhost:3000'
+        }
+      ]
 
 gulp.task 'serve', ->
   runSequence 'clean:dev', ['scripts', 'compass'], 'webserver'

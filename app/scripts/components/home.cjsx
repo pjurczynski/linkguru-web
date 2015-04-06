@@ -1,12 +1,12 @@
 React = require 'react'
 Router = require 'react-router'
+Authentication = require './../mixins/authentication'
 
 LinksComponent = require './links'
 NewLinkComponent = require './new_link'
 
-
 Home = React.createClass
-  mixins: [Router.State]
+  mixins: [Router.State, Authentication]
 
   currentLinksPage: ->
     parseInt(@getQuery()?['links-page']) || 1

@@ -4,7 +4,9 @@ Promise = require('promise')
 _ = require 'underscore'
 sessions = require('./api/sessions')
 links = require('./api/links')
-client = Request.createClient('http://localhost:8000/api/')
+
+config = require('./config')
+client = Request.createClient(config.apiHost)
 
 successStatus = (status) ->
   status >= 200 && status < 300

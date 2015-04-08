@@ -3,7 +3,6 @@ Reflux = require "reflux"
 
 session = window.Actions.session
 sessionStore = window.Stores.session
-panel = require("react-bootstrap/lib/panel")
 
 { State, Navigation } = require "react-router"
 

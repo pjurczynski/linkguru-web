@@ -1,9 +1,8 @@
 React = require "react"
 Reflux = require "reflux"
 
-session = Window.Actions.session
-sessionStore = Window.Stores.session
-panel = require("react-bootstrap/lib/panel")
+session = window.Actions.session
+sessionStore = window.Stores.session
 
 { State, Navigation } = require "react-router"
 

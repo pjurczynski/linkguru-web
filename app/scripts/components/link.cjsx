@@ -4,7 +4,7 @@ DateTime = require 'react-time'
 cx = React.addons.classSet
 RouterLink = require('react-router').Link
 
-actions = Window.Actions.links
+actions = window.Actions.links
 
 
 Link = React.createClass
@@ -19,7 +19,7 @@ Link = React.createClass
       'up-voted': @props.link.upVoted
       'down-voted': @props.link.downVoted
     )
-    <div className={"row link-component #{classes}"} >
+    <div className={"row link-component #{classes}"}>
       <div className='score'>
         <div className='row'>
           <div className='btn bt-link up-vote' onClick={@onUpVote}>&#9650;</div>
@@ -47,17 +47,15 @@ Link = React.createClass
         </div>
         <div className='col-sm-3 tags'>
           {
-            @props.link.tags.map (tag) ->
-              <RouterLink to="tag" params={name: tag}>
-                <button className='btn btn-default btn-xs pull-right'>{tag}</button>
-              </RouterLink>
+            @props.link.tag_list.map (tag) ->
+              <button className='btn btn-default btn-xs pull-right'>{tag}</button>
           }
         </div>
       </div>
       <div className='visible-sm-inline visible-md-inline visible-lg-inline user'>
         <div className='pull-right'>
           <div className='row'>
-            <Gravatar email={@props.link.owner.email} />
+            <Gravatar email={@props.link.user.email} />
           </div>
         </div>
       </div>

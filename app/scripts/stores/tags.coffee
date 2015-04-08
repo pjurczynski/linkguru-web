@@ -5,7 +5,7 @@ _ = require 'underscore'
 tagsStore = (linksStore) -> Reflux.createStore
   init: ->
     @listenTo linksStore, @handleLinksChange
-    @listenToMany Window.Actions.tags
+    @listenToMany window.Actions.tags
 
   state:
     tags: {}

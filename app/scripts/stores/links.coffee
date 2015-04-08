@@ -2,25 +2,28 @@ Reflux = require 'reflux'
 faker = require 'faker'
 lunr = require 'lunr'
 _ = require 'underscore'
-
+linksApi = window.Api.links
 
 linksStore = Reflux.createStore
   init: ->
-    @listenToMany Window.Actions.links
+    @listenToMany window.Actions.links
 
-    @list = {}
+    @list = []
     @search = null
     @lunr = lunr ->
       @ref('id')
       @field('url')
-      @field('tags', 10)
+      @field('tag_list', 10)
       @field('description')
 
 
   onAdd: (payload) ->
-    @lunr.add(payload)
-    @list.unshift(payload)
-    @trigger @getState()
+
+    linksApi.add(link: payload).then (resposne) =>
+      link = resposne.data
+      @lunr.add(link)
+      @list.unshift(link)
+      @trigger @getState()
 
   onSearch: (query) ->
     if query.length > 2
@@ -37,6 +40,10 @@ linksStore = Reflux.createStore
     link.score += if link.downVoted then 2 else 1
     link.upVoted = true
     link.downVoted = false
+    linksApi.upVote(link).then (response) ->
+      link.score = response.data.score
+      @trigger @getState()
+    @trigger @getState()
     @trigger @getState()
 
   onDownVote: (link) ->
@@ -44,6 +51,9 @@ linksStore = Reflux.createStore
     link.score -= if link.upVoted then 2 else 1
     link.downVoted = true
     link.upVoted = false
+    linksApi.downVote(link).then (response) ->
+      link.score = response.data.score
+      @trigger @getState()
     @trigger @getState()
 
   getState: (payload) ->
@@ -72,11 +82,11 @@ linksStore = Reflux.createStore
     _(@list).indexBy('id')
 
   onFetch: ->
-    data = @fakeData()
-    data.forEach (link) =>
-      @lunr.add(link)
-    @list = data
-    @trigger @getState()
+    linksApi.all().then (response) =>
+      response.data.forEach (link) =>
+        @lunr.add(link)
+      @list = response.data
+      @trigger @getState()
 
 
 module.exports = linksStore

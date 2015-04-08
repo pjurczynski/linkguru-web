@@ -1,12 +1,13 @@
 React = require 'react/addons'
 _ = require 'underscore'
+Router = require 'react-router'
 
 LinkComponent = require './link'
 Paginator = require('./paginator/paginator')
 
 
 LinksList = React.createClass
-  mixins: [React.addons.LinkedStateMixin]
+  mixins: [React.addons.LinkedStateMixin, Router.State]
 
   getDefaultProps: ->
     currentPage: 1
@@ -19,13 +20,19 @@ LinksList = React.createClass
   numberOfPages: ->
     Math.ceil _(@getLinks()).size() / @props.perPage
 
+  currentLinksPage: ->
+    parseInt(@getQuery()?['links-page']) || 1
+
   currentLinks: ->
-    from = (@props.currentPage - 1) * @props.perPage
-    to = @props.currentPage * @props.perPage
+    from = (@currentLinksPage() - 1) * @props.perPage
+    to = @currentLinksPage() * @props.perPage
     @getLinks().slice(from, to) || []
 
   getLinks: ->
     @state.searchResults || _(@props.links).toArray()
+
+  componentDidMount: ->
+    window.Actions.links.fetch()
 
   render: ->
     <div className='links-list-component'>
@@ -36,7 +43,7 @@ LinksList = React.createClass
         }
       </div>
       <div className='links-pagination'>
-        <Paginator currentPage={@props.currentPage} route={@props.route} attribute="#{@props.listName}-page" visiblePages={@state.visiblePages} numberOfPages={@numberOfPages()}/>
+        <Paginator currentPage={@currentLinksPage()} route={@props.route || 'links'} attribute="#{@props.listName}-page" visiblePages={@state.visiblePages} numberOfPages={@numberOfPages()}/>
       </div>
     </div>
 

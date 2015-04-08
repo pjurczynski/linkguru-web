@@ -1,4 +1,10 @@
 {
   "name": "linkguru",
-  "root": "dist"
+  "root": "dist",
+  "proxy": {
+    "api": {
+      "origin":"https://linkguru-api.herokuapp.com",
+      "timeout": 30
+    }
+  }
 }

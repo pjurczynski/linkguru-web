@@ -11,15 +11,17 @@ MissingRouteComponent = require './components/missing_route'
 TagsComponent =  require './components/tags'
 Tag =  require './components/tag'
 LinksComponent = require './components/links'
+LoginComopnent = require './components/login'
+NewLinkComponent = require './components/new_link'
+
 
 
 routes = (
   <Route name="layout" path="/" handler={Layout}>
     <DefaultRoute handler={Home}/>
-    <Route name='links' handler={LinksComponent}/>
-    <Route name='tags' handler={TagsComponent}>
-      <Route name='tag' path=":name" handler={Tag}/>
-    </Route>
+    <Route name='links' path='/links' handler={LinksComponent}/>
+    <Route name='newLink' path='/links/new' handler={NewLinkComponent}/>
+    <Route name='login' handler={LoginComopnent}/>
     <NotFoundRoute handler={MissingRouteComponent}/>
   </Route>
 )

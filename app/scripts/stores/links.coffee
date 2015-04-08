@@ -2,11 +2,11 @@ Reflux = require 'reflux'
 faker = require 'faker'
 lunr = require 'lunr'
 _ = require 'underscore'
-linksApi = Window.Api.links
+linksApi = window.Api.links
 
 linksStore = Reflux.createStore
   init: ->
-    @listenToMany Window.Actions.links
+    @listenToMany window.Actions.links
 
     @list = []
     @search = null

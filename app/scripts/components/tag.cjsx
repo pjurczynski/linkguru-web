@@ -2,8 +2,8 @@ React = require 'react/addons'
 Reflux = require 'reflux'
 
 cx = React.addons.classSet
-actions = Window.Actions.tags
-tagsStore = Window.Stores.tags
+actions = window.Actions.tags
+tagsStore = window.Stores.tags
 LinksList = require './links_list'
 Router = require 'react-router'
 Link = Router.Link

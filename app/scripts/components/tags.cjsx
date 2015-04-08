@@ -6,9 +6,9 @@ Router = require('react-router')
 RouteHandler = Router.RouteHandler
 
 TagNav = require './tag_nav'
-tagsStore = Window.Stores.tags
+tagsStore = window.Stores.tags
 
-actions = Window.Actions.tags
+actions = window.Actions.tags
 
 
 Tags = React.createClass

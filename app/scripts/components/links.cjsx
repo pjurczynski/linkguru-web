@@ -1,6 +1,6 @@
 React = require 'react'
 Reflux = require 'reflux'
-linksStore = Window.Stores.links
+linksStore = window.Stores.links
 
 LinksList = require './links_list'
 Authentication = require './../mixins/authentication'

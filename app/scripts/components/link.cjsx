@@ -4,7 +4,7 @@ DateTime = require 'react-time'
 cx = React.addons.classSet
 RouterLink = require('react-router').Link
 
-actions = Window.Actions.links
+actions = window.Actions.links
 
 
 Link = React.createClass

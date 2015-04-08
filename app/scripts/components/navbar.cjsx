@@ -1,10 +1,10 @@
 React = require 'react'
 Link = require('react-router').Link
 Reflux = require 'reflux'
-sessionStore = Window.Stores.session
+sessionStore = window.Stores.session
 
-links = Window.Actions.links
-session = Window.Actions.session
+links = window.Actions.links
+session = window.Actions.session
 Navigation = require("react-router").Navigation
 
 

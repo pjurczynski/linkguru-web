@@ -1,4 +1,4 @@
-sessionStore = Window.Stores.session
+sessionStore = window.Stores.session
 
 Authentication =
   statics:

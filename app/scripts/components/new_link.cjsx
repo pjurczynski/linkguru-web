@@ -1,7 +1,7 @@
 React = require 'react/addons'
 cx = React.addons.classSet
 
-actions = Window.Actions.links
+actions = window.Actions.links
 
 Authentication = require './../mixins/authentication'
 NewLink = React.createClass

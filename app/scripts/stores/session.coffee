@@ -1,9 +1,9 @@
 Reflux = require 'reflux'
-sessionsApi = Window.Api.sessions
+sessionsApi = window.Api.sessions
 
 sessionStore = Reflux.createStore
   init: ->
-    @listenToMany Window.Actions.session
+    @listenToMany window.Actions.session
     @data =
       user: {}
       authenticated: false

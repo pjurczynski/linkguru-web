@@ -32,7 +32,7 @@ LinksList = React.createClass
     @state.searchResults || _(@props.links).toArray()
 
   componentDidMount: ->
-    Window.Actions.links.fetch()
+    window.Actions.links.fetch()
 
   render: ->
     <div className='links-list-component'>

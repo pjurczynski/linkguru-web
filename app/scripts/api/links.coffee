@@ -5,6 +5,9 @@ Links = (api) ->
   add: (payload) ->
     api.post('links', link: payload)
 
+  update: (id, payload) ->
+    api.put("links/#{id}", link: payload)
+
   upVote: (link) ->
     api.post("links/#{link.id}/upvote")
 

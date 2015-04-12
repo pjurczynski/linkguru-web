@@ -60,24 +60,6 @@ linksStore = Reflux.createStore
     list: @search || @list
     payload: payload
 
-  fakeData: ->
-    links = [1..1000].map (i) =>
-      tags = [1..faker.helpers.randomNumber(5)].map ->
-        faker.hacker.noun()
-      link = {
-        id: i
-        url: "http://google.pl/search?q=#{faker.lorem.words(1)[0]}"
-        score: faker.helpers.randomNumber(200)
-        tags: tags
-        downVoted: faker.helpers.randomNumber(1) == 1
-        upVoted: faker.helpers.randomNumber(1) == 1
-        description: faker.lorem.sentence()
-        owner:
-          email: faker.internet.email()
-      }
-      return link
-    links
-
   all: ->
     _(@list).indexBy('id')
 

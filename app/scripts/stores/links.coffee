@@ -18,8 +18,7 @@ linksStore = Reflux.createStore
 
 
   onAdd: (payload) ->
-
-    linksApi.add(link: payload).then (resposne) =>
+    linksApi.add(payload).then (resposne) =>
       link = resposne.data
       @lunr.add(link)
       @list.unshift(link)

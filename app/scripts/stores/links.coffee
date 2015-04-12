@@ -65,6 +65,8 @@ linksStore = Reflux.createStore
   array: ->
     _(@list).toArray()
 
+  get: (id) ->
+    @list[id]
 
   onFetch: ->
     linksApi.all().then (response) =>

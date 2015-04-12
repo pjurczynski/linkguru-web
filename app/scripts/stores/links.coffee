@@ -61,13 +61,17 @@ linksStore = Reflux.createStore
     payload: payload
 
   all: ->
-    _(@list).indexBy('id')
+    @list
+
+  array: ->
+    _(@list).toArray()
+
 
   onFetch: ->
     linksApi.all().then (response) =>
       response.data.forEach (link) =>
         @lunr.add(link)
-      @list = response.data
+      @list = _(response.data).indexBy('id')
       @trigger @getState()
 
 

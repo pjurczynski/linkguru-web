@@ -24,6 +24,12 @@ linksStore = Reflux.createStore
       @list.unshift(link)
       @trigger @getState()
 
+  onUpdate: (id, payload) ->
+    _(@list[id]).extend(payload)
+    linksApi.update(id, payload).then (response) =>
+      @trigger @getState()
+    @trigger @getState()
+
   onSearch: (query) ->
     if query.length > 2
       ids = @lunr.search(query).map (ref) -> ref.ref

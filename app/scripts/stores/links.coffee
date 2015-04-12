@@ -57,7 +57,7 @@ linksStore = Reflux.createStore
     @trigger @getState()
 
   getState: (payload) ->
-    list: @search || @list
+    list: @search || _(@array()).sortBy('created_at').reverse()
     payload: payload
 
   all: ->

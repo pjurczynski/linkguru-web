@@ -10,6 +10,7 @@ linksStore = Reflux.createStore
 
     @list = []
     @search = null
+    @query = ''
     @lunr = lunr ->
       @ref('id')
       @field('url')
@@ -31,10 +32,11 @@ linksStore = Reflux.createStore
     @trigger @getState()
 
   onSearch: (query) ->
-    if query.length > 2
-      ids = @lunr.search(query).map (ref) -> ref.ref
+    @query = query
+    if @query.length > 2
+      ids = @lunr.search(@query).map (ref) -> ref.ref
 
-      @search = @list.filter (el) ->
+      @search = _(@list).filter (el) ->
         _(ids).contains String(el.id)
     else
       @search = null
@@ -63,6 +65,7 @@ linksStore = Reflux.createStore
 
   getState: (payload) ->
     list: @search || _(@array()).sortBy('created_at').reverse()
+    query: @query
     payload: payload
 
   all: ->

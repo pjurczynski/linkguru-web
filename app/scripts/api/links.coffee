@@ -8,6 +8,9 @@ Links = (api) ->
   update: (id, payload) ->
     api.put("links/#{id}", link: payload)
 
+  remove: (id) ->
+    api.del("links/#{id}")
+
   upVote: (link) ->
     api.post("links/#{link.id}/upvote")
 

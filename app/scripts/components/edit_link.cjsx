@@ -13,6 +13,7 @@ NewLink = React.createClass
     React.addons.LinkedStateMixin,
     Router.State
     Router.Navigation
+    Authentication
   ]
 
   getInitialState: ->

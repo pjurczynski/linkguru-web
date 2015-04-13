@@ -2,15 +2,19 @@ React = require 'react'
 Link = require('react-router').Link
 Reflux = require 'reflux'
 sessionStore = window.Stores.session
+linksStore = window.Stores.links
 
 links = window.Actions.links
 session = window.Actions.session
 Navigation = require("react-router").Navigation
 
 
-
 Navbar = React.createClass
-  mixins: [Reflux.listenTo(sessionStore, "onSessionStateChange"), Navigation]
+  mixins: [
+    Reflux.listenTo(sessionStore, "onSessionStateChange")
+    Reflux.listenTo(linksStore, "onLinksStateChange")
+    Navigation
+   ]
 
   getInitialState: ->
     session: {}
@@ -20,6 +24,9 @@ Navbar = React.createClass
 
   onSessionStateChange: (session) ->
     @setState(session: session)
+
+  onLinksStateChange: (data) ->
+    @setState(query: data.query)
 
   onLogoutClick: ->
     session.logout()
@@ -38,7 +45,7 @@ Navbar = React.createClass
           </ul>
           <form className="navbar-form navbar-left" role="search">
             <div className="form-group">
-              <input type='text' className='form-control' placeholder='Search' onChange={@onQueryChange} required/>
+              <input type='text' className='form-control' placeholder='Search' onChange={@onQueryChange} value={@state.query} required/>
             </div>
           </form>
           <ul className='nav navbar-nav navbar-right'>

@@ -25,11 +25,16 @@ linksStore = Reflux.createStore
       @list[link.id] = link
       @trigger @getState()
 
-  onUpdate: (id, payload) ->
+  onUpdate: (id, payload, caller) ->
     _(@list[id]).extend(payload)
     linksApi.update(id, payload).then (response) =>
-      @trigger @getState()
-    @trigger @getState()
+      caller?.transitionTo('links')
+
+  onRemove: (id, caller) ->
+    linksApi.remove(id).then =>
+      delete @list[id]
+      caller?.transitionTo('links')
+
 
   onSearch: (query) ->
     @query = query
@@ -50,7 +55,6 @@ linksStore = Reflux.createStore
     linksApi.upVote(link).then (response) ->
       link.score = response.data.score
       @trigger @getState()
-    @trigger @getState()
     @trigger @getState()
 
   onDownVote: (link) ->

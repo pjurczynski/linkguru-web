@@ -1,0 +1,20 @@
+.page-editLink{
+  input{
+    border: none;
+  }
+  textarea{
+    border: none;
+    padding-top: 8px;
+  }
+  label{
+    line-height: 34px;
+  }
+  .input-row{
+    padding-top: 10px;
+    &:hover{
+      input, textarea{
+        background: #F9F9F9;
+      }
+    }
+  }
+}

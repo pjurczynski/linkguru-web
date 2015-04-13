@@ -14,6 +14,9 @@ Link = React.createClass
   onUpVote: ->
     actions.upVote(@props.link)
 
+  linkUrl: ->
+    @props.link.url
+
   render: ->
     classes = cx(
       'up-voted': @props.link.upVoted
@@ -34,9 +37,17 @@ Link = React.createClass
       <div className='offset-left-35 offset-right-50'>
         <div className='col-xs-9 link-data'>
           <div className='row url'>
-            <a href={@props.link.url}>
+            <a href={@linkUrl()}>
               {@props.link.url}
             </a>
+            {
+              if @props.link.owned
+                <span className='btn btn-default btn-xs edit'>
+                  <RouterLink to="editLink" params={linkId: @props.link.id}>
+                    edit
+                  </RouterLink>
+                </span>
+            }
           </div>
           <div className='row'>
             {@props.link.description}

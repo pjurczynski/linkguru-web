@@ -13,7 +13,7 @@ Tag =  require './components/tag'
 LinksComponent = require './components/links'
 LoginComopnent = require './components/login'
 NewLinkComponent = require './components/new_link'
-
+EditLinkComponent = require './components/edit_link'
 
 
 routes = (
@@ -21,6 +21,7 @@ routes = (
     <DefaultRoute handler={Home}/>
     <Route name='links' path='/links' handler={LinksComponent}/>
     <Route name='newLink' path='/links/new' handler={NewLinkComponent}/>
+    <Route name='editLink' path='/links/:linkId/edit' handler={EditLinkComponent}/>
     <Route name='login' handler={LoginComopnent}/>
     <NotFoundRoute handler={MissingRouteComponent}/>
   </Route>

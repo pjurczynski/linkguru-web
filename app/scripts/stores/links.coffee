@@ -18,12 +18,17 @@ linksStore = Reflux.createStore
 
 
   onAdd: (payload) ->
-
-    linksApi.add(link: payload).then (resposne) =>
+    linksApi.add(payload).then (resposne) =>
       link = resposne.data
       @lunr.add(link)
       @list.unshift(link)
       @trigger @getState()
+
+  onUpdate: (id, payload) ->
+    _(@list[id]).extend(payload)
+    linksApi.update(id, payload).then (response) =>
+      @trigger @getState()
+    @trigger @getState()
 
   onSearch: (query) ->
     if query.length > 2
@@ -57,35 +62,23 @@ linksStore = Reflux.createStore
     @trigger @getState()
 
   getState: (payload) ->
-    list: @search || @list
+    list: @search || _(@array()).sortBy('created_at').reverse()
     payload: payload
 
-  fakeData: ->
-    links = [1..1000].map (i) =>
-      tags = [1..faker.helpers.randomNumber(5)].map ->
-        faker.hacker.noun()
-      link = {
-        id: i
-        url: "http://google.pl/search?q=#{faker.lorem.words(1)[0]}"
-        score: faker.helpers.randomNumber(200)
-        tags: tags
-        downVoted: faker.helpers.randomNumber(1) == 1
-        upVoted: faker.helpers.randomNumber(1) == 1
-        description: faker.lorem.sentence()
-        owner:
-          email: faker.internet.email()
-      }
-      return link
-    links
-
   all: ->
-    _(@list).indexBy('id')
+    @list
+
+  array: ->
+    _(@list).toArray()
+
+  get: (id) ->
+    @list[id]
 
   onFetch: ->
     linksApi.all().then (response) =>
       response.data.forEach (link) =>
         @lunr.add(link)
-      @list = response.data
+      @list = _(response.data).indexBy('id')
       @trigger @getState()
 
 

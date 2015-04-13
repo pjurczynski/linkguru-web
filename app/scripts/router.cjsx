@@ -20,7 +20,7 @@ routes = (
   <Route name="layout" path="/" handler={Layout}>
     <DefaultRoute handler={Home}/>
     <Route name='links' path='/links' handler={LinksComponent}/>
-    <Route name='newLink' path='/links/new' handler={NewLinkComponent}/>
+    <Route name='newLink' path='/links/new' handler={Home}/>
     <Route name='editLink' path='/links/:linkId/edit' handler={EditLinkComponent}/>
     <Route name='login' handler={LoginComopnent}/>
     <NotFoundRoute handler={MissingRouteComponent}/>

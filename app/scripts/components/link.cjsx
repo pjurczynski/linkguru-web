@@ -53,7 +53,7 @@ Link = React.createClass
             {@props.link.description}
           </div>
           <div className='row date'>
-            <DateTime value={@props.link.description} relative/>
+            <DateTime value={@props.link.created_at} relative/>
           </div>
         </div>
         <div className='col-sm-3 tags'>

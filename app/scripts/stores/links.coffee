@@ -10,6 +10,7 @@ linksStore = Reflux.createStore
 
     @list = []
     @search = null
+    @query = ''
     @lunr = lunr ->
       @ref('id')
       @field('url')
@@ -21,20 +22,26 @@ linksStore = Reflux.createStore
     linksApi.add(payload).then (resposne) =>
       link = resposne.data
       @lunr.add(link)
-      @list.unshift(link)
+      @list[link.id] = link
       @trigger @getState()
 
-  onUpdate: (id, payload) ->
+  onUpdate: (id, payload, caller) ->
     _(@list[id]).extend(payload)
     linksApi.update(id, payload).then (response) =>
-      @trigger @getState()
-    @trigger @getState()
+      caller?.transitionTo('links')
+
+  onRemove: (id, caller) ->
+    linksApi.remove(id).then =>
+      delete @list[id]
+      caller?.transitionTo('links')
+
 
   onSearch: (query) ->
-    if query.length > 2
-      ids = @lunr.search(query).map (ref) -> ref.ref
+    @query = query
+    if @query.length > 2
+      ids = @lunr.search(@query).map (ref) -> ref.ref
 
-      @search = @list.filter (el) ->
+      @search = _(@list).filter (el) ->
         _(ids).contains String(el.id)
     else
       @search = null
@@ -49,7 +56,6 @@ linksStore = Reflux.createStore
       link.score = response.data.score
       @trigger @getState()
     @trigger @getState()
-    @trigger @getState()
 
   onDownVote: (link) ->
     return true if link.downVoted
@@ -63,6 +69,7 @@ linksStore = Reflux.createStore
 
   getState: (payload) ->
     list: @search || _(@array()).sortBy('created_at').reverse()
+    query: @query
     payload: payload
 
   all: ->

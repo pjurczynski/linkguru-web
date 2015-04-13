@@ -1,4 +1,4 @@
-.page-editLink{
+.editLink{
   input{
     border: none;
   }
@@ -16,5 +16,8 @@
         background: #F9F9F9;
       }
     }
+  }
+  .actions{
+    margin-top: 10px;
   }
 }

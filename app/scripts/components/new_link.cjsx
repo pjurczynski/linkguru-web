@@ -29,24 +29,31 @@ NewLink = React.createClass
     actions.add(link)
 
   render: ->
-    <div className='jumbotron'>
-      <h1>Share a link!</h1>
+    <div className='row editLink'>
+      <h1 className='text-center'>Share a link!</h1>
       <form onSubmit=@onLinkAdd>
-        <div className='row'>
-          <div className='col-xs-12'>
-            <input type='text' className='form-control' placeholder='url' valueLink={this.linkState('url')} required/>
+        <div className='row input-row'>
+          <label className='col-xs-4 col-md-offset-2 col-md-2 text-right url-label'>url:</label>
+          <div className='col-xs-8 col-md-6'>
+            <input type='text' className='form-control' placeholder='url' valueLink={@linkState('url')} required/>
           </div>
         </div>
-        <div className='row'>
-          <div className='col-xs-8'>
-            <textarea type='textarea' rows=2 className='form-control' placeholder='description' valueLink={this.linkState('description')} required>
+        <div className='row input-row'>
+          <label className='col-xs-4 col-md-offset-2 col-md-2 text-right'> description:</label>
+          <div className='col-xs-8 col-md-6'>
+            <textarea type='textarea' rows=2 className='form-control' placeholder='description' valueLink={@linkState('description')} required>
             </textarea>
           </div>
-          <div className='col-xs-4'>
-            <textarea type='textarea' rows=2 className='form-control' placeholder='comma separated tags' valueLink={this.linkState('tagList')} />
+        </div>
+        <div className='row input-row'>
+          <label className='col-xs-4 col-md-offset-2 col-md-2 text-right'>tags:</label>
+          <div className='col-xs-8 col-md-6'>
+            <textarea type='textarea' rows=2 className='form-control' placeholder='comma separated tags' valueLink={@linkState('tagList')} />
           </div>
         </div>
-        <button type='submit' className='btn btn-primary'>share!</button>
+        <div className='row actions'>
+          <button type='submit' className='btn btn-primary col-md-4 col-md-offset-4'>share!</button>
+        </div>
       </form>
     </div>
 

@@ -13,6 +13,7 @@ NewLink = React.createClass
     React.addons.LinkedStateMixin,
     Router.State
     Router.Navigation
+    Authentication
   ]
 
   getInitialState: ->
@@ -39,45 +40,56 @@ NewLink = React.createClass
   onlinksStateChange: (state) ->
     @setState(@getLinkFromStore())
 
-  onLinkSave: (e)->
+  onLinkSave: (e) ->
     e.preventDefault()
     link =
       url: @state.url
       description: @state.description
       tag_list: @state.tagList?.split(/\s*,\s*/)
 
-    actions.update(@getParams().linkId, link)
-    @transitionTo('links')
+    actions.update(@getParams().linkId, link, @)
+
+  onRemove: ->
+    actions.remove(@getParams().linkId, @)
 
   render: ->
-    <div className='page-editLink'>
+    <div className='editLink'>
       {
         if @state.loading
           <p>loading</p>
         else
-          <h1>Share a link!</h1>
-          <form onSubmit=@onLinkSave>
-            <div className='row input-row'>
-              <label className='col-xs-4 col-md-offset-2 col-md-2 text-right url-label'>url:</label>
-              <div className='col-xs-8 col-md-6'>
-                <input type='text' className='form-control' placeholder='url' valueLink={@linkState('url')} required/>
+          <div>
+            <form onSubmit=@onLinkSave>
+              <div className='row input-row'>
+                <label className='col-xs-4 col-md-offset-2 col-md-2 text-right url-label'>url:</label>
+                <div className='col-xs-8 col-md-6'>
+                  <input type='text' className='form-control' placeholder='url' valueLink={@linkState('url')} required/>
+                </div>
               </div>
-            </div>
-            <div className='row input-row'>
-              <label className='col-xs-4 col-md-offset-2 col-md-2 text-right'> description:</label>
-              <div className='col-xs-8 col-md-6'>
-                <textarea type='textarea' rows=2 className='form-control' placeholder='description' valueLink={@linkState('description')} required>
-                </textarea>
+              <div className='row input-row'>
+                <label className='col-xs-4 col-md-offset-2 col-md-2 text-right'> description:</label>
+                <div className='col-xs-8 col-md-6'>
+                  <textarea type='textarea' rows=2 className='form-control' placeholder='description' valueLink={@linkState('description')} required>
+                  </textarea>
+                </div>
               </div>
-            </div>
-            <div className='row input-row'>
-              <label className='col-xs-4 col-md-offset-2 col-md-2 text-right'>tags:</label>
-              <div className='col-xs-8 col-md-6'>
-                <textarea type='textarea' rows=2 className='form-control' placeholder='comma separated tags' valueLink={@linkState('tagList')} />
+              <div className='row input-row'>
+                <label className='col-xs-4 col-md-offset-2 col-md-2 text-right'>tags:</label>
+                <div className='col-xs-8 col-md-6'>
+                  <textarea type='textarea' rows=2 className='form-control' placeholder='comma separated tags' valueLink={@linkState('tagList')} />
+                </div>
               </div>
-            </div>
-            <button type='submit' className='btn btn-primary'>update!</button>
-          </form>
+              <div className='row actions'>
+                <button type='submit' className='btn btn-primary col-xs-8 col-xs-offset-2 col-md-3 col-md-offset-2'>
+                  update!
+                </button>
+                <button type='button' onClick={@onRemove} className='btn btn-danger col-xs-8 col-xs-offset-2 col-md-3 col-md-offset-2'>
+                  remove...
+                </button>
+              </div>
+            </form>
+
+          </div>
       }
     </div>
 

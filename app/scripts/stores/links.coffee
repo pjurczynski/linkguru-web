@@ -21,7 +21,7 @@ linksStore = Reflux.createStore
     linksApi.add(payload).then (resposne) =>
       link = resposne.data
       @lunr.add(link)
-      @list.unshift(link)
+      @list[link.id] = link
       @trigger @getState()
 
   onUpdate: (id, payload) ->

@@ -17,6 +17,7 @@ Home = React.createClass
         if @currentLinksPage() == 1
           <NewLinkComponent/>
       }
+      <hr/>
       <LinksComponent currentPage={@currentLinksPage()} route='/'/>
     </div>
 
